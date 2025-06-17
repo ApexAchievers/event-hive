@@ -2,13 +2,13 @@ import BlogCard from "./BlogCard";
 
 export default function OurBlogs() {
     return (
-        <section className="mt-20 w-[90%] mx-auto">
-            <div className="order-1 flex-grow">
-                <h1 className="space-x-2 text-left">
-                <span className="text-black font-bold text-3xl" >Our</span>
-                <span className="text-[#7848F4] font-bold text-3xl">Blogs</span>
-            </h1>
-            </div>
+        <section className="mt-20 w-[90%] mx-auto py-10">
+            <div className="ml-6 sm:ml-12 lg:ml-20">
+        <h1 className="text-3xl font-bold mb-10">
+          <span className="text-black">Our </span>
+          <span className="text-primary">Blogs</span>
+        </h1>
+      </div>
             <div className="grid grid-cols-3 gap-5">
                 {[1, 2, 3].map(n => <BlogCard key={n} />)}
             </div>

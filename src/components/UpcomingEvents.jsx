@@ -120,8 +120,10 @@ export default function UpcomingEvents() {
           <EventCard key={n} />
         ))}
       </div>
-      <div>
-        <button>Load more...</button>
+      <div className="flex justify-center mt-10 ">
+        <button className="bg-primary text-white px-6 py-2 rounded-lg text-sm hover:bg-[#6633cc] transition">
+          Load more...
+        </button>
       </div>
     </section>
   );
