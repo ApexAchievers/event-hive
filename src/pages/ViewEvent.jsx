@@ -7,8 +7,10 @@ export default function ViewEvent() {
     return (
         <>
             <Navbar />
-            <EventDetail />
-            <SimilarEvents />
+            <div className="min-h-screen bg-gray-50">
+                <EventDetail />
+                <SimilarEvents />
+            </div>
             <Footer />
         </>
     );
