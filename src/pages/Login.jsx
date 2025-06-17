@@ -1,30 +1,6 @@
-import SubmitButton from "../components/SubmitButton";
-import { apiClient } from "../api/client";
-import { useNavigate } from "react-router";
-
 
 
 export default function Login() {
-
-    const navigate = useNavigate();
-
-    const loginUser = async (data) => {
-        try {
-            const response = await apiClient.post('/users/login', data, {
-                headers: {
-                    "Content-Type": 'application/json'
-                }
-            });
-            console.log(response);
-
-            localStorage.setItem('ACCESS_TOKEN', response.data.data.accessToken);
-            navigate('/');
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     return (
         <>
             <div className="flex min-h-screen">
@@ -34,20 +10,24 @@ export default function Login() {
                         <h2 className="text-heading font-semibold text-center"> <span className="font-bold">Event</span> <span className="text-[#7848F4] font-bold">Hive</span></h2>
                         <h3 className="text-big-heading font-bold mt-6 mb-8 text-center tracking-tighter">Sign In to Event Hive</h3>
 
-                        <form action={loginUser} className="space-y-6">
+                        <form className="space-y-6">
                             <div>
                                 <label className="mb-1  text-body-text">YOUR EMAIL</label>
-                                <input type="email" className="w-full px-4 py-2 border border-gray-300 rounded-[5px] bg-white" placeholder="Enter your mail" name="email" />
+                                <input type="email" className="w-full px-4 py-2 border border-gray-300 rounded-[5px] bg-white" placeholder="Enter your mail" />
                             </div>
                             <div>
                                 <label className="mb-1 text-body-text">PASSWORD</label>
-                                <input type="password" className="w-full px-4 py-2 border border-gray-300 rounded-[5px] bg-white" placeholder="Enter your password" name="password" />
+                                <input type="password" className="w-full px-4 py-2 border border-gray-300 rounded-[5px] bg-white" placeholder="Enter your password" />
                                 <p className="text-right mt-1">
                                     <a href="#" className="text-sm text-gray-500 hover:text-gray-800 a">Forgot your password?</a>
                                 </p>
                             </div>
-
-                            <SubmitButton className="flex justify-evenly text-center  items-center gap-[10px] border-[1px] w-[257px] h-[40px] ml-24 bg-[#7848F4] text-white rounded-[5px] hover:bg-purple-700 transition cursor-pointer" title={'Sign In'} />
+                            <button
+                                type="submit"
+                                className="flex justify-evenly text-center  items-center gap-[10px] border-[1px] w-[257px] h-[40px] ml-24 bg-[#7848F4] text-white rounded-[5px] hover:bg-purple-700 transition"
+                            >
+                                Sign In
+                            </button>
                         </form>
 
                         <div className="my-4 flex justify-center mr-2 text-center text-gray-500">Or</div>
