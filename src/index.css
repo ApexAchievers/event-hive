@@ -12,3 +12,7 @@
   --text-paragraph: 12px;
   --text-label: 10px;
 }
+
+html{
+  scrollbar-width: none;
+}
