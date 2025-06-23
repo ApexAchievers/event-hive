@@ -17,7 +17,7 @@ export default function CreateEvent() {
                 }
             });
             console.log(response.data)
-            navigate(`/view-event?id=${response.data.id}`);
+            navigate(`/view-event?id=${response.data.data.id}`);
         } catch (error) {
             console.log(error)
         }
