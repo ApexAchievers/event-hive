@@ -1,6 +1,27 @@
 import CollegeCard from "./CollegeCard";
+import useSWR from "swr";
+import { apiFetcher } from '../api/client';
+import { ClipLoader } from "react-spinners";
 
 export default function TrendingColleges() {
+  const { data, error, isLoading } = useSWR("/colleges?limit=3&skip=3", apiFetcher);
+ 
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center">
+        <ClipLoader size={100} />
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="flex justify-center">
+        <p className="text-xl">Something went wrong</p>
+      </div>
+    );
+  }
+
   return (
     <section className="mt-20 w-[90%] mx-auto">
       <div className="ml-6 sm:ml-12 lg:ml-20">
@@ -11,8 +32,8 @@ export default function TrendingColleges() {
       </div>
 
       <div className="grid grid-cols-3 gap-5">
-        {[1, 2, 3].map((n) => (
-          <CollegeCard key={n} />
+        {data.data.map((college) => (
+          <CollegeCard key={college.id} college={college} />
         ))}
       </div>
       <div className="flex justify-center mt-10 ">

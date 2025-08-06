@@ -1,6 +1,28 @@
 import EventCard from "./EventCard";
+import { apiFetcher } from "../api/client";
+import useSWR from "swr";
+import { BeatLoader } from "react-spinners";
+import { Link } from "react-router";
+import SubmitButton from "./SubmitButton";
 
 export default function UpcomingEvents() {
+
+  const {data, isLoading, error} = useSWR ('/events?limit=6', apiFetcher);
+
+  if (isLoading) {
+    return (
+      <div>
+        <BeatLoader  size={100}/>
+      </div>
+    );
+  }
+
+  if (error) {
+    <div>
+      <p>Something went wrong</p>
+    </div>
+  }
+
   return (
     <section className="mt-20 w-[90%] mx-auto">
       <div className="">
@@ -116,14 +138,13 @@ export default function UpcomingEvents() {
       </div>
 
       <div className="grid grid-cols-3 gap-5">
-        {[1, 2, 3, 4, 5, 6].map((n) => (
-          <EventCard key={n} />
+        {data.data.map((event) => (
+          <EventCard key={event.id} event={event} />
         ))}
       </div>
       <div className="flex justify-center mt-10 ">
-        <button className="bg-primary text-white px-6 py-2 rounded-lg text-sm hover:bg-[#6633cc] transition">
-          Load more...
-        </button>
+        <SubmitButton title={'Load more...'} className="bg-primary text-white px-6 py-2 rounded-lg text-sm hover:bg-[#6633cc] transition" />
+          
       </div>
     </section>
   );
